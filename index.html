@@ -1,1 +1,135 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sir Iscat Newton</title>
+    <link rel="icon" href="src/favicon.ico" type="image/x-icon" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100%;
+        background-image: url("src/bg.jpg");
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+      }
+
+      #video-container {
+        position: absolute;
+        left: 100px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      #add-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+        font-size: 18px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+
+      #add-container a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      #add-container img {
+        width: 40px;
+        height: auto;
+      }
+
+      video {
+        width: 600px;
+        height: auto;
+      }
+
+      #logo {
+        margin-left: 20px;
+        margin-right: 40px;
+      }
+
+      #logo:hover {
+        opacity: 0.7;
+      }
+
+      .apple {
+        position: absolute;
+        width: 50px;
+        height: auto;
+        pointer-events: none;
+        opacity: 0.88;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background"></div>
+
+    <div id="video-container">
+      <video id="video" controls autoplay>
+        <source src="src/video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div id="add-container">
+      <a href="https://t.me/your_telegram_link" target="_blank">
+        <img src="src/tg.webp" id="logo" alt="Telegram Logo" />
+      </a>
+      <div>
+        <p>Mint revoked, LP burned</p>
+        <p>CA: 0x000000000000000000000000</p>
+      </div>
+
+      <a href="https://twitter.com/iscatnewton" target="_blank">
+        <img src="src/x.png" id="logo" alt="Twitter Logo" />
+      </a>
+    </div>
+
+    <script>
+      function createApple() {
+        const apple = document.createElement("img");
+        apple.src = "src/apple.png";
+        apple.classList.add("apple");
+        apple.style.left = Math.random() * window.innerWidth + "px";
+        apple.style.top = "-50px";
+        document.body.appendChild(apple);
+
+        const fallSpeed = Math.random() * 2 + 1;
+        function fall() {
+          const top = parseInt(apple.style.top);
+          if (top < window.innerHeight) {
+            apple.style.top = top + fallSpeed + "px";
+            requestAnimationFrame(fall);
+          } else {
+            apple.remove();
+          }
+        }
+        fall();
+      }
+
+      setInterval(createApple, 1000);
+    </script>
+  </body>
+</html>
